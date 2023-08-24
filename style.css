@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 h1 {
     align-self: center;
@@ -20,4 +20,86 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 8px;
+    gap: 12px;
+}
+
+.settings {
+    flex-grow: 0;
+    background-color: whitesmoke;
+    align-self: stretch;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    gap: 12px;
+}
+
+.settings > h2 {
+    margin: 5px;
+    padding: 3px;
+}
+
+.color-choice-tab {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    align-items: center;
+}
+
+.color-choice-tab h3 {
+    margin: 2px;
+    padding: 3px;
+}
+
+.current-color {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 6px;
+}
+
+.color-choices {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.colors {
+    width: 50px;
+    height: 25px;
+    background-color: purple;
+}
+
+.color-display {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: purple;
+}
+
+.grid-layout {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.generate-new-layout {
+    /* outline: none; */
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+}
+
+.sketch-pad {
+    border: 3px solid black;
+    flex: 3.5;
+    width: 550px;
+    max-width: 550px;
+    height: 550px;
 }
