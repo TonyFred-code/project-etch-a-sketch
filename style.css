@@ -73,7 +73,10 @@ h1 {
 .colors {
     width: 50px;
     height: 25px;
-    background-color: purple;
+}
+
+.active-color {
+    transform: scale(1.1);
 }
 
 .color-display {
@@ -89,19 +92,15 @@ h1 {
     flex-direction: column;
 }
 
-.generate-new-layout {
-    /* outline: none; */
-    padding: 6px 12px;
-    /* border: none;
-    border-radius: 5px; */
-}
-
-.sketch-pad {
+.sketch-pad-container {
     border: 3px solid black;
     flex-shrink: 0;
     width: 550px;
     max-width: 550px;
     height: 550px;
+}
+
+.sketch-pad {
     display: flex;
     flex-flow: row wrap;
 }
@@ -109,5 +108,4 @@ h1 {
 .grid {
     flex-shrink: 0;
     flex-grow: 0;
-    outline: 1px solid red;
 }
