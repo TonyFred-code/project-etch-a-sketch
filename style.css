@@ -1,0 +1,23 @@
+html {
+    box-sizing: border-box;
+}
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+h1 {
+    align-self: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
