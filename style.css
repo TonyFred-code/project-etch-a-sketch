@@ -54,6 +54,44 @@ h1 {
     padding: 3px;
 }
 
+.black {
+    background-color: black;
+}
+
+.red {
+    background-color: red;
+}
+.blue {
+    background-color: blue;
+}
+.purple {
+    background-color: purple;
+}
+.yellow {
+    background-color: yellow;
+}
+.white {
+    background-color: white;
+}
+.green {
+    background-color: green;
+}
+.orange {
+    background-color: orange;
+}
+.violet {
+    background-color: violet;
+}
+.pink {
+    background-color: pink;
+}
+.indigo {
+    background-color: indigo;
+}
+.brown {
+    background-color: brown;
+}
+
 .current-color {
     display: flex;
     flex-direction: column;
@@ -73,6 +111,9 @@ h1 {
 .colors {
     width: 50px;
     height: 25px;
+}
+.colors:hover {
+    transform: scale(1.1);
 }
 
 .active-color {
@@ -108,4 +149,5 @@ h1 {
 .grid {
     flex-shrink: 0;
     flex-grow: 0;
+    outline: .1px solid red;
 }
