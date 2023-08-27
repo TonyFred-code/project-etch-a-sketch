@@ -11,38 +11,46 @@ const hoverModeBtn = document.querySelector(".hover-mode-btn");
 const eraserModeBtn = document.querySelector(".eraser");
 const colorChoicesTab = document.querySelector(".color-choices");
 const colorChoices = document.querySelectorAll(".colors");
+const modeChangeBtns = document.querySelector(".mode-change-buttons");
 
 const sketchPadSettings = {
   penColor: "black",
   displayedGrids: 16,
   colorMode: "chosen", // chosen or random
   mouseMode: "hover", // hover or drag or eraser
-  changePenColor(color) {
-    this.penColor = color;
-  },
-  changeMouseMode(mode) {
-    if (mode !== "hover" || mode !== "drag" || mode !== "eraser") {
-      console.error("invalid mouse mode");
-      return;
-    }
-    this.mouseMode = mode;
-  },
-  changeColorMode(mode) {
-    if (mode !== "chose" || mode !== "random") {
-      console.error("invalid color mode");
-      return;
-    }
-    this.colorMode = mode;
-  }
 };
+
+randomColorsBtn.addEventListener("click", () => {
+  sketchPadSettings.colorMode = "random";
+  let color = getRndRGB();
+  colorDisplay.style.backgroundColor = color;
+  sketchPadSettings.penColor = color;
+})
+
+eraserModeBtn.addEventListener("click", () => {
+  sketchPadSettings.colorMode = "chosen"
+  sketchPadSettings.mouseMode = "hover"
+  sketchPadSettings.penColor = "transparent";
+  colorDisplay.style.backgroundColor = "transparent";
+});
+
+modeChangeBtns.addEventListener("click", (e) => {
+  if (e.target ===  dragModeBtn) {
+    let grids = document.querySelectorAll(".grid");
+    grids.forEach((grid) => {
+      grid.removeEventListener("mouseover", gridEventFn);
+    })}
+})
+
 
 colorChoices.forEach((colorChoice) => {
   colorChoice.addEventListener("click", (e) => {
     // change pen color
     let backgroundColor = e.target.getAttribute("data-color");
-    sketchPadSettings.changePenColor(backgroundColor);
+    sketchPadSettings.penColor = backgroundColor;
     // show active color
     colorDisplay.style.backgroundColor = sketchPadSettings.penColor;
+    sketchPadSettings.colorMode = "chosen";
     // add active class to it and remove from its siblings
     makeActive(e.target);
   });
@@ -86,13 +94,24 @@ function generateGrids(gridsCount = 16) {
     grid.style.height = gridHeight + "px";
     grid.style.width = gridWidth + "px";
     sketchPad.appendChild(grid);
-    // grid.addEventListener("mouseover", () => {
-    //   changeGridBackgroundColor(grid, sketchPadSettings.penColor)
-    // });
+    grid.addEventListener("mouseover", gridEventFn)
   }
 
   sketchPadSettings.displayedGrids = gridsCount;
+  colorDisplay.style.backgroundColor = sketchPadSettings.penColor
 }
+
+function gridEventFn() {
+  if (sketchPadSettings.colorMode === "random") {
+    let color = getRndRGB();
+    changeGridBackgroundColor(this, color);
+    sketchPadSettings.penColor = color;
+  } else if (sketchPadSettings.colorMode === "chosen") {
+    changeGridBackgroundColor(this, sketchPadSettings.penColor);
+  }
+  colorDisplay.style.backgroundColor = sketchPadSettings.penColor;
+}
+
 
 function generateRndInt(max, min) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -103,6 +122,10 @@ function getRndRGB() {
     255,
     0
   )}, ${generateRndInt(255, 0)})`;
+}
+
+function changeGridBackgroundColor(grid, color) {
+  grid.style.backgroundColor = color;
 }
 
 generateGrids();
