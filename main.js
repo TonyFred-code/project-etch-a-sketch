@@ -6,12 +6,9 @@ const colorDisplay = document.querySelector(".color-display");
 const clearSketchPadBtn = document.querySelector(".clear-sketch-pad");
 const defaultColorChoices = document.querySelectorAll(".colors");
 const randomColorsBtn = document.querySelector(".rnd-colors");
-const dragModeBtn = document.querySelector(".drag-mode-btn");
-const hoverModeBtn = document.querySelector(".hover-mode-btn");
 const eraserModeBtn = document.querySelector(".eraser");
 const colorChoicesTab = document.querySelector(".color-choices");
 const colorChoices = document.querySelectorAll(".colors");
-const modeChangeBtns = document.querySelector(".mode-change-buttons");
 
 const sketchPadSettings = {
   penColor: "black",
@@ -33,14 +30,6 @@ eraserModeBtn.addEventListener("click", () => {
   sketchPadSettings.penColor = "transparent";
   colorDisplay.style.backgroundColor = "transparent";
 });
-
-modeChangeBtns.addEventListener("click", (e) => {
-  if (e.target ===  dragModeBtn) {
-    let grids = document.querySelectorAll(".grid");
-    grids.forEach((grid) => {
-      grid.removeEventListener("mouseover", gridEventFn);
-    })}
-})
 
 
 colorChoices.forEach((colorChoice) => {
